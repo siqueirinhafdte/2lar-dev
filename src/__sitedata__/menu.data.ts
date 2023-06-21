@@ -21,7 +21,7 @@ export const menuData = [
   },
   {
     id: '5',
-    redirectLink: '/help',
+    redirectLink: '/institutional/faq',
     label: 'Ajuda'
   }
 ];
