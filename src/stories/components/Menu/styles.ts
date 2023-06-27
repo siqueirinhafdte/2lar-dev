@@ -127,11 +127,16 @@ export const MenuItem = styled(ListItem, {
 })<{ isSelected: boolean }>`
   height: 2.0625rem;
   height: 3.125rem;
+
   border-left: ${({ theme, isSelected }) =>
     `${spacing.S1} solid ${
       isSelected ? theme.palette.primary.light : theme.palette.secondary.main
     }`};
+
   padding-left: ${spacing.S10};
+  &:hover {
+    border-color: ${({ theme }) => theme.palette.primary.light};
+  }
 `;
 
 export const TitleCategory = styled(ListItemText, {

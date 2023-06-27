@@ -4,7 +4,7 @@ import React from 'react';
 import 'utils/swiper/styles';
 
 import Link from 'next/link';
-import { ArrowBack, ArrowForward } from 'shared/icons';
+import { KeyboardArrowLeftIcon, KeyboardArrowRightIcon } from 'shared/icons';
 import SwiperCore, { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -16,41 +16,40 @@ SwiperCore.use([Navigation]);
 export const Carousel = ({ data, slidesPerView }: CarouselProps) => {
   return (
     <S.Wrapper>
-      <S.Grid container spacing={3}>
-        <S.Grid item xs>
-          <S.Button className="swiper-prev">
-            <ArrowBack />
-          </S.Button>
-        </S.Grid>
-        <S.Grid item xs={10}>
+      <S.Container>
+        <S.WrapperButton>
+          <S.IconButton className="swiper-prev">
+            <KeyboardArrowLeftIcon />
+          </S.IconButton>
+        </S.WrapperButton>
+        <S.ContainerSwiper>
           <Swiper
             navigation={{
               prevEl: '.swiper-prev',
               nextEl: '.swiper-next'
             }}
-            className="mySwiper"
             slidesPerView={slidesPerView}
           >
             {data.map((item: ListIcon) => (
               <SwiperSlide key={`${item.label}-${item.icon}`}>
                 {item && (
                   <Link href={{ pathname: item.pathname }}>
-                    <S.Container>
-                      <div>{item.icon}</div>
-                      <div>{item.label}</div>
-                    </S.Container>
+                    <S.Content>
+                      {item.icon}
+                      <span>{item.label}</span>
+                    </S.Content>
                   </Link>
                 )}
               </SwiperSlide>
             ))}
           </Swiper>
-        </S.Grid>
-        <S.Grid item xs>
-          <S.Button className="swiper-next">
-            <ArrowForward />
-          </S.Button>
-        </S.Grid>
-      </S.Grid>
+        </S.ContainerSwiper>
+        <S.WrapperButton>
+          <S.IconButton className="swiper-next">
+            <KeyboardArrowRightIcon />
+          </S.IconButton>
+        </S.WrapperButton>
+      </S.Container>
     </S.Wrapper>
   );
 };

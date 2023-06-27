@@ -6,29 +6,43 @@ import { spacing } from 'theme/spacing';
 
 export const Wrapper = styled('div')`
   display: flex;
-  flex-direction: column;
-  align-self: self-start;
-  margin: ${spacing.S28} ${spacing.S14} ${spacing.S28};
+  flex-direction: row;
+  margin: ${spacing.S28} 0;
   gap: ${spacing.S28};
   color: ${({ theme }) => theme.palette.primary.dark};
+  width: 100%;
 
   ${({ theme }) => theme.breakpoints.down('md')} {
-    margin: ${spacing.S14} 0 ${spacing.S14} ${spacing.S10};
+    display: flex;
+    flex-direction: column;
+    margin: ${spacing.S32} 0 ${spacing.S14} ${spacing.S10};
     gap: ${spacing.S14};
   }
 `;
 
+export const BoxTitle = styled('div')`
+  width: 60%;
+  padding-left: ${spacing.S100};
+  display: flex;
+  flex-direction: column;
+  ${({ theme }) => theme.breakpoints.down('md')} {
+    width: 100%;
+    padding-left: ${spacing.S10};
+  }
+`;
+
 export const Title = styled(Typography)`
-  width: 100%;
   ${({ theme }) => theme.breakpoints.down('md')} {
     font-size: ${fontSizes.F32};
   }
 `;
 
 export const InformationContainer = styled('div')`
-  width: 75rem;
+  width: 40%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  align-items: flex-end;
+
   ${({ theme }) => theme.breakpoints.down('md')} {
     width: auto;
     flex-direction: column;
@@ -39,6 +53,7 @@ export const InformationContainer = styled('div')`
 export const AddressContainer = styled('div')`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 export const Address = styled(Typography)`
@@ -60,6 +75,13 @@ export const Price = styled(Typography)`
 export const ButtonsContainer = styled('div')`
   display: flex;
   gap: ${spacing.S16};
+  padding-right: ${spacing.S100};
+
+  ${({ theme }) => theme.breakpoints.down('md')} {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 `;
 
 export const FavoriteButtonContainer = styled('div')`

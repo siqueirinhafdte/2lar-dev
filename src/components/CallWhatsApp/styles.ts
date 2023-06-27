@@ -21,6 +21,7 @@ export const ContainerCard = styled('div')`
     flex-direction: column-reverse;
     justify-content: center;
   }
+  background-color: ${({ theme }) => theme.palette.secondary.light};
 `;
 
 export const ContentCard = styled('div')`

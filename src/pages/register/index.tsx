@@ -2,12 +2,18 @@ import { useState } from 'react';
 
 import Checkbox from '@mui/material/Checkbox';
 import CircularProgress from '@mui/material/CircularProgress';
+import { InputPhoneNumberDDI } from 'components/InputPhoneNumberDDI';
 import { useRegister } from 'hooks/useRegisterPage';
-import Link from 'next/link';
 import { InputPassword, InputText } from 'stories/components';
-import { Button } from 'stories/components/Forms/Button';
 import * as S from 'styles/registerPageStyles';
-import { getErrorsFormik, getHelperTextFormik, maskCPF, maskPhoneNumber } from 'utils';
+import {
+  getErrorsFormik,
+  getHelperTextFormik,
+  handleChangeFormik,
+  maskBirthdate,
+  maskCPF,
+  maskPhoneNumber
+} from 'utils';
 
 export default function Register() {
   const { formik } = useRegister();
@@ -17,57 +23,131 @@ export default function Register() {
     <S.Main>
       <S.Wrapper>
         <S.Form onSubmit={formik.handleSubmit}>
-          <h3>Cadastro</h3>
+          <S.Subtitle variant="h6">Cadastro</S.Subtitle>
+          <S.Title variant="h4">Estamos quase lá</S.Title>
 
           <InputText
-            label="Nome"
+            label="Seu Nome"
             name="name"
             value={formik.values.name}
             helperText={getHelperTextFormik(formik, 'name')}
             error={getErrorsFormik(formik, 'name')}
-            onChange={formik.handleChange}
+            onChange={handleChangeFormik(formik, 'name')}
             onBlur={formik.handleBlur}
           />
           <InputText
-            label="E-mail"
+            label="Seu e-mail"
             name="email"
             value={formik.values.email}
             helperText={getHelperTextFormik(formik, 'email')}
             error={getErrorsFormik(formik, 'email')}
-            onChange={formik.handleChange}
+            onChange={handleChangeFormik(formik, 'email')}
             onBlur={formik.handleBlur}
           />
-          <InputText
+
+          <InputPhoneNumberDDI
             label="Celular"
-            name="phone"
-            value={formik.values.phone}
-            helperText={getHelperTextFormik(formik, 'phone')}
-            error={getErrorsFormik(formik, 'phone')}
-            onChange={(e) => {
-              const value = maskPhoneNumber(e.target.value);
-              formik.setFieldValue('phone', value);
-            }}
+            name="phone_number"
+            value={maskPhoneNumber(formik.values.phone_number)}
+            helperText={getHelperTextFormik(formik, 'phone_number')}
+            error={getErrorsFormik(formik, 'phone_number')}
+            onChange={handleChangeFormik(formik, 'phone_number')}
             onBlur={formik.handleBlur}
           />
-          <InputText
-            label="CPF"
-            name="fiscalId"
-            value={formik.values.fiscalId}
-            helperText={getHelperTextFormik(formik, 'fiscalId')}
-            error={getErrorsFormik(formik, 'fiscalId')}
-            onChange={(e) => {
-              const value = maskCPF(e.target.value);
-              formik.setFieldValue('fiscalId', value);
-            }}
-            onBlur={formik.handleBlur}
-          />
+
+          <S.InputContainer gap={2}>
+            <InputText
+              label="CPF"
+              name="fiscal_id"
+              value={maskCPF(formik.values.fiscal_id)}
+              helperText={getHelperTextFormik(formik, 'fiscal_id')}
+              error={getErrorsFormik(formik, 'fiscal_id')}
+              onChange={handleChangeFormik(formik, 'fiscal_id')}
+              onBlur={formik.handleBlur}
+              mask="cpf"
+            />
+            <InputText
+              label="Data de nascimento"
+              name="birthdate"
+              value={maskBirthdate(formik.values.birthdate)}
+              helperText={getHelperTextFormik(formik, 'birthdate')}
+              error={getErrorsFormik(formik, 'birthdate')}
+              onChange={handleChangeFormik(formik, 'birthdate')}
+              onBlur={formik.handleBlur}
+              mask="birthdate"
+            />
+          </S.InputContainer>
+
+          <S.SubtitleAddress variant="h6">Endereço</S.SubtitleAddress>
+
+          <S.InputContainer gap={2}>
+            <InputText
+              label="CEP"
+              name="postal_code"
+              value={formik.values.postal_code}
+              helperText={getHelperTextFormik(formik, 'postal_code')}
+              error={getErrorsFormik(formik, 'postal_code')}
+              onChange={handleChangeFormik(formik, 'postal_code')}
+              onBlur={formik.handleBlur}
+              mask="cep"
+            />
+            <InputText
+              label="Rua"
+              name="street"
+              value={formik.values.street}
+              helperText={getHelperTextFormik(formik, 'street')}
+              error={getErrorsFormik(formik, 'street')}
+              onChange={handleChangeFormik(formik, 'street')}
+              onBlur={formik.handleBlur}
+            />
+          </S.InputContainer>
+          <S.InputContainer gap={2}>
+            <InputText
+              label="Bairro"
+              name="district"
+              value={formik.values.district}
+              helperText={getHelperTextFormik(formik, 'district')}
+              error={getErrorsFormik(formik, 'district')}
+              onChange={handleChangeFormik(formik, 'district')}
+              onBlur={formik.handleBlur}
+            />
+            <InputText
+              label="Número"
+              name="number"
+              value={formik.values.number}
+              helperText={getHelperTextFormik(formik, 'number')}
+              error={getErrorsFormik(formik, 'number')}
+              onChange={handleChangeFormik(formik, 'number')}
+              onBlur={formik.handleBlur}
+            />
+          </S.InputContainer>
+          <S.InputContainer gap={2}>
+            <InputText
+              label="Cidade"
+              name="city"
+              value={formik.values.city}
+              helperText={getHelperTextFormik(formik, 'city')}
+              error={getErrorsFormik(formik, 'city')}
+              onChange={handleChangeFormik(formik, 'city')}
+              onBlur={formik.handleBlur}
+            />
+            <InputText
+              label="Estado"
+              name="state"
+              value={formik.values.state}
+              helperText={getHelperTextFormik(formik, 'state')}
+              error={getErrorsFormik(formik, 'state')}
+              onChange={handleChangeFormik(formik, 'state')}
+              onBlur={formik.handleBlur}
+            />
+          </S.InputContainer>
           <InputPassword
             label="Senha"
             name="password"
             value={formik.values.password}
             helperText={getHelperTextFormik(formik, 'password')}
             error={getErrorsFormik(formik, 'password')}
-            onChange={formik.handleChange}
+            onChange={handleChangeFormik(formik, 'password')}
             onBlur={formik.handleBlur}
           />
           <InputPassword
@@ -76,29 +156,32 @@ export default function Register() {
             value={formik.values.confirmPassword}
             helperText={getHelperTextFormik(formik, 'confirmPassword')}
             error={getErrorsFormik(formik, 'confirmPassword')}
-            onChange={formik.handleChange}
+            onChange={handleChangeFormik(formik, 'confirmPassword')}
             onBlur={formik.handleBlur}
           />
 
           <S.FooterForm>
+            <Checkbox
+              aria-label="remember"
+              onChange={(e) => setOptIn(e.currentTarget.value === 'on')}
+            />
+
             <span>
-              <Checkbox
-                aria-label="remember"
-                onChange={(e) => setOptIn(e.currentTarget.value === 'on')}
-              />
-              <span>
-                Li e aceito os <Link href="#">termos</Link> de uso
-              </span>
+              Ao se cadastrar você aceita os{' '}
+              <S.StyledLink href="/institutional/terms-of-use">termos de uso</S.StyledLink> e{' '}
+              <S.StyledLink href="/institutional/privacy-policy">
+                termos de privacidade
+              </S.StyledLink>
             </span>
           </S.FooterForm>
-          <Button
+          <S.StyledButton
             type="submit"
             variant="contained"
             color="success"
             disabled={!formik.isValid || !optIn}
           >
-            Cadastrar
-          </Button>
+            Confirmar dados
+          </S.StyledButton>
           {formik.isSubmitting && (
             <center>
               <CircularProgress />

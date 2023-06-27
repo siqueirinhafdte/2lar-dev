@@ -11,7 +11,8 @@ export const ImageComponent: FC<ImageProps> = ({
   src,
   height,
   width,
-  redirectLink
+  redirectLink,
+  className
 }): ReactElement => {
   const [isImageBroken, setIsImageBroken] = React.useState(false);
 
@@ -40,9 +41,10 @@ export const ImageComponent: FC<ImageProps> = ({
         height={realHeight}
         onError={onError}
         loading="lazy"
+        className={className}
       />
     );
-  }, [isImageBroken, src, alt, realWidth, realHeight, onError]);
+  }, [isImageBroken, src, alt, realWidth, realHeight, onError, className]);
 
   const ImageContainer = useMemo(() => {
     return redirectLink != null ? <Link href={redirectLink}>{ImageShow}</Link> : ImageShow;

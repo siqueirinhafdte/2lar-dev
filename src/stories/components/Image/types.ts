@@ -4,4 +4,5 @@ export interface ImageProps {
   redirectLink?: string;
   width?: number | `${number}`;
   height?: number | `${number}`;
+  className?: string;
 }

@@ -110,14 +110,33 @@ export const useBodyContent = (fields?: FieldsItemResult[]) => {
     }
   }
 
+  function getObjectValue(valueProp: string | number) {
+    try {
+      const objElastic = JSON.parse(String(valueProp));
+
+      if (_isObject(objElastic)) {
+        return objElastic;
+      }
+      return valueProp;
+    } catch {
+      return valueProp;
+    }
+  }
+
   function getValue(field: FieldsItemResult, searchResult: SearchResult) {
     const valueProp = getValueElastic(field, searchResult);
     if (field.customValue) {
-      const objReplace = {
-        [field.namePropElasticSearch]: field.namePropElasticSearch ? valueProp ?? '' : ''
-      };
+      const formmatedValue = getObjectValue(valueProp);
 
-      return Mustache.render(field.customValue, objReplace);
+      if (_isObject(formmatedValue)) {
+        return Mustache.render(field.customValue, formmatedValue);
+      } else {
+        const objReplace = {
+          [field.namePropElasticSearch]: field.namePropElasticSearch ? valueProp ?? '' : ''
+        };
+
+        return Mustache.render(field.customValue, objReplace);
+      }
     }
 
     return valueProp;

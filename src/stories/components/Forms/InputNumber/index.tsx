@@ -3,7 +3,12 @@ import { useCallback, useState } from 'react';
 import * as S from './styles';
 import { InputNumberProps } from './types';
 
-export function InputNumber({ defaultValue = 0, onChange, isInt = false }: InputNumberProps) {
+export function InputNumber({
+  defaultValue = 0,
+  onChange,
+  isInt = false,
+  maxValue
+}: InputNumberProps) {
   const [value, setValue] = useState(defaultValue);
 
   const getValueMinus = useCallback(
@@ -19,24 +24,18 @@ export function InputNumber({ defaultValue = 0, onChange, isInt = false }: Input
 
   const handleChange = useCallback(
     (action: '+' | '-') => {
-      if (action === '-') {
-        const valueMinus = getValueMinus(value);
+      const newValue = action === '-' ? getValueMinus(value) : getValueMore(value);
 
-        setValue(getValueMinus);
-        if (onChange != null) {
-          onChange(valueMinus);
-        }
-      }
-      if (action === '+') {
-        const valueMore = getValueMore(value);
+      if (newValue !== undefined) {
+        const fixedValue = maxValue !== undefined ? Math.min(newValue, maxValue) : newValue;
 
-        setValue(getValueMore);
+        setValue(fixedValue);
         if (onChange != null) {
-          onChange(valueMore);
+          onChange(fixedValue);
         }
       }
     },
-    [value, onChange, getValueMore, getValueMinus]
+    [value, onChange, getValueMore, getValueMinus, maxValue]
   );
 
   return (
@@ -49,7 +48,7 @@ export function InputNumber({ defaultValue = 0, onChange, isInt = false }: Input
       >
         -
       </S.ActionBox>
-      <S.Input type="number" value={value} disabled={false} />
+      <S.Input type="number" value={value} disabled={false} inputProps={{ max: maxValue }} />
       <S.ActionBox
         onClick={() => {
           handleChange('+');

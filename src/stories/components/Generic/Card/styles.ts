@@ -10,9 +10,7 @@ import { Mode } from './types';
 
 export const Wrapper = styled(CardMUI, {
   shouldForwardProp: (prop) => !['mode'].includes(prop as string)
-})<{
-  mode: Mode;
-}>`
+})<{ mode: Mode }>`
   display: flex;
   flex-direction: ${({ mode }) => (mode === 'vertical' ? 'column' : 'row')};
   max-width: ${({ mode }) => (mode === 'vertical' ? 'auto' : '100%')};
@@ -20,14 +18,30 @@ export const Wrapper = styled(CardMUI, {
   box-shadow: unset;
 `;
 
+export const WrapperCarouselImage = styled('div', {
+  shouldForwardProp: (prop) => !['mode'].includes(prop as string)
+})<{ mode: Mode }>`
+  max-width: 18.75rem;
+  position: relative;
+
+  img {
+    height: ${({ mode }) => (mode === 'vertical' ? '12rem' : 'auto')};
+    width: ${({ mode }) => (mode === 'horizontal' ? '33%' : 'auto')};
+  }
+
+  .swiper-pagination-bullet {
+    background: ${({ theme }) => theme.palette.secondary.light};
+    opacity: 1;
+  }
+`;
+
 export const CardMedia = styled(CardMediaMUI, {
   shouldForwardProp: (prop) => !['mode'].includes(prop as string)
-})<{
-  mode: Mode;
-}>`
+})<{ mode: Mode }>`
   height: ${({ mode }) => (mode === 'vertical' ? '12rem' : 'auto')};
   width: ${({ mode }) => (mode === 'horizontal' ? '33%' : 'auto')};
   margin: ${({ mode }) => (mode === 'horizontal' ? spacing.S10 : '0')};
+  position: relative;
 
   img {
     object-fit: cover;
@@ -43,10 +57,12 @@ export const CardContentContainer = styled(CardContent)`
 
 export const StyledChip = styled(Chip)`
   background-color: ${({ theme }) => theme.palette.primary.light};
-  color: ${({ theme }) => theme.palette.grey['100']};
+  color: ${({ theme }) => theme.palette.text.disabled};
+  margin: ${spacing.S10};
+  position: absolute;
   top: 0;
   left: 0;
-  margin: ${spacing.S10};
+  z-index: 2;
 `;
 
 export const Description = styled(Typography)`

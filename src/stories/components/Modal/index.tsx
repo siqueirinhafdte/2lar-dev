@@ -7,8 +7,8 @@ import { ModalProps } from './types';
 export const Modal = ({ children, closeModal, title, ...props }: ModalProps) => {
   return (
     <S.Wrapper>
-      <Dialog {...props} maxWidth={false} onClose={closeModal} fullWidth>
-        {title !== null && (
+      <Dialog {...props} maxWidth={false} onClose={closeModal}>
+        {title && (
           <S.DialogTitle>
             {title}
             <S.IconButton aria-label="close" onClick={closeModal}>

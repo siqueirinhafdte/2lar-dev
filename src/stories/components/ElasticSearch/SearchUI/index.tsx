@@ -8,14 +8,27 @@ import '@elastic/react-search-ui-views/lib/styles/styles.css';
 
 import { BodyContent } from './BodyContent';
 import { BodyHeader } from './BodyHeader';
+import { CustomPagination } from './Custom/CustomPagination';
 import { SideContent } from './SideContent';
 import * as S from './styles';
 import { SearchUIProps } from './types';
 
-const SearcUIComponent = ({ title, config, configFields, carouselItems }: SearchUIProps) => {
+const SearcUIComponent = ({
+  title,
+  config,
+  configFields,
+  carouselItems,
+  sortOptions,
+  facetsFields
+}: SearchUIProps) => {
   return (
     <SearchProvider config={config}>
-      <SearchUICustomProvider configFields={configFields} carouselItems={carouselItems}>
+      <SearchUICustomProvider
+        configFields={configFields}
+        carouselItems={carouselItems}
+        sortOptions={sortOptions}
+        facetsFields={facetsFields}
+      >
         <WithSearch mapContextToProps={({ wasSearched }) => ({ wasSearched })}>
           {({ wasSearched }) => {
             return (
@@ -24,7 +37,7 @@ const SearcUIComponent = ({ title, config, configFields, carouselItems }: Search
                   bodyHeader={<BodyHeader title={title} />}
                   sideContent={<>{wasSearched && <SideContent />}</>}
                   bodyContent={<>{wasSearched && <BodyContent />}</>}
-                  bodyFooter={<Paging />}
+                  bodyFooter={<Paging view={CustomPagination} />}
                 />
               </S.Wrapper>
             );

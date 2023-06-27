@@ -1,5 +1,5 @@
 {
-  "name": "studio-boilerplate",
+  "name": "2lar",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -36,6 +36,7 @@
     "aws-amplify": "^5.2.4",
     "axios": "^1.4.0",
     "crypto-js": "^4.1.1",
+    "date-fns": "^2.30.0",
     "formik": "^2.4.1",
     "json-schema": "^0.4.0",
     "lodash": "^4.17.21",

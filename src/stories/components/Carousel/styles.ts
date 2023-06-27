@@ -1,29 +1,39 @@
 import { styled } from '@mui/material';
-import MUIGrid from '@mui/material/Grid';
+import IconButtonMUI from '@mui/material/IconButton';
+import { spacing } from 'theme/spacing';
 
-export const Wrapper = styled('div')`
-  color: ${({ theme }) => theme.palette.primary.main};
-`;
+export const Wrapper = styled('div')``;
 
 export const Container = styled('div')`
   display: flex;
+  gap: ${spacing.S16};
+`;
+
+export const ContainerSwiper = styled('div')`
+  width: 90%;
+`;
+
+export const Content = styled('div')`
+  display: flex;
   flex-direction: column;
-  align-content: space-between;
-  color: ${({ theme }) => theme.palette.grey[600]};
+  align-items: center;
+  gap: ${spacing.S5};
+  color: ${({ theme }) => theme.palette.text.primary};
+  padding-bottom: ${spacing.S16};
+
   cursor: pointer;
   :hover {
-    color: ${({ theme }) => theme.palette.primary.main};
-    font-weight: bold;
-    text-decoration-line: underline;
+    border-bottom: 0.0625rem solid ${({ theme }) => theme.palette.primary.light};
   }
 `;
 
-export const Button = styled(`button`)`
-  cursor: pointer;
-  background-color: white;
-  margin-top: 0.5rem;
+export const WrapperButton = styled('div')`
+  display: flex;
+  align-items: center;
+  width: 5%;
 `;
 
-export const Grid = styled(MUIGrid)`
-  text-align: center;
+export const IconButton = styled(IconButtonMUI)`
+  background-color: ${({ theme }) => theme.palette.secondary.light};
+  border: ${({ theme }) => `${spacing.S1} solid ${theme.palette.secondary.main}`};
 `;

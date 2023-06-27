@@ -3,5 +3,7 @@ export const defaultValuesMask = {
   cnpj: '',
   cpf: ' ',
   currency: 'R$ 0,0',
-  phone: ''
+  phone: '',
+  cep: '',
+  birthdate: ''
 };

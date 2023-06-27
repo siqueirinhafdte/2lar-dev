@@ -11,4 +11,6 @@ export type SelectProps = MuiSelectProps<Option['value']> & {
   helperText?: string;
   emptyLabel?: string;
   onChangeValue?: (event: SelectChangeEvent<Option['value']>) => void;
+  hasBorderRadius?: boolean;
+  classNameWrapperSelect?: string;
 };

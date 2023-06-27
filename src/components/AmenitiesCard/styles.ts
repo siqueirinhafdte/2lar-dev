@@ -1,5 +1,6 @@
 import { styled } from '@mui/material';
 import Typography from '@mui/material/Typography';
+import { filterColors } from 'theme/filterColors.theme';
 import { fontSizes } from 'theme/fontSizes.theme';
 import { spacing } from 'theme/spacing';
 
@@ -8,13 +9,18 @@ export const Wrapper = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-top: ${spacing.S120};
+  margin-top: ${spacing.S70};
   color: ${({ theme }) => theme.palette.primary.dark};
+  margin-bottom: ${spacing.S60};
+
+  ${({ theme }) => theme.breakpoints.down('sm')} {
+    margin-top: ${spacing.S5};
+  }
 `;
 
 export const Title = styled(Typography)`
   margin-bottom: ${spacing.S64};
-  font-weight: ${({ theme }) => theme.typography.fontWeightBold};
+
   ${({ theme }) => theme.breakpoints.down('sm')} {
     padding: ${spacing.S10};
     font-size: ${fontSizes.F24};
@@ -49,6 +55,11 @@ export const IconContainer = styled('div')`
   width: 3.75rem;
   height: 3.75rem;
   overflow: hidden;
+
+  img {
+    filter: ${filterColors.pallet.primary.main};
+  }
+
   ${({ theme }) => theme.breakpoints.down('sm')} {
     padding: ${spacing.S10};
   }
@@ -65,9 +76,9 @@ export const CardDescription = styled('div')`
 `;
 
 export const CardTitle = styled(Typography)`
-  font-size: ${fontSizes.F28};
+  font-size: ${fontSizes.F20};
   line-height: 2.5rem;
-  font-weight: ${({ theme }) => theme.typography.fontWeightBold};
+  font-weight: ${({ theme }) => theme.typography.fontWeightMedium};
   ${({ theme }) => theme.breakpoints.down('sm')} {
     font-size: ${fontSizes.F24};
     line-height: 2rem;

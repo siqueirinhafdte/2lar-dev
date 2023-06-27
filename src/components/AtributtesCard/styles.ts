@@ -2,16 +2,6 @@ import { styled } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { spacing } from 'theme/spacing';
 
-export const Background = styled('div')`
-  width: 100%;
-  background-color: ${({ theme }) => theme.palette.secondary.main};
-  display: flex;
-  justify-content: center;
-  ${({ theme }) => theme.breakpoints.down('md')} {
-    align-self: flex-start;
-  }
-`;
-
 export const Wrapper = styled('div')`
   width: 9.375rem;
   height: 11.25rem;

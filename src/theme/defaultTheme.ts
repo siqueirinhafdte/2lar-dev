@@ -83,6 +83,28 @@ defaultTheme.typography.h4 = {
   }
 };
 
+defaultTheme.typography.h5 = {
+  fontFamily: epilogue.style.fontFamily,
+  fontWeight: defaultTheme.typography.fontWeightMedium,
+  fontSize: '1.5rem',
+  lineHeight: '2rem',
+  [defaultTheme.breakpoints.down('sm')]: {
+    fontSize: '1.25rem',
+    lineHeight: '1.75rem'
+  }
+};
+
+defaultTheme.typography.h6 = {
+  fontFamily: epilogue.style.fontFamily,
+  fontWeight: defaultTheme.typography.fontWeightMedium,
+  fontSize: '1.25rem',
+  lineHeight: '1.75rem',
+  [defaultTheme.breakpoints.down('sm')]: {
+    fontSize: '1rem',
+    lineHeight: '1.5rem'
+  }
+};
+
 export default defaultTheme;
 
 declare module '@mui/material/styles' {

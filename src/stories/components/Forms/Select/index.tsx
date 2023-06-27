@@ -13,6 +13,8 @@ export const Select: React.FC<SelectProps> = ({
   helperText,
   onChangeValue,
   emptyLabel = 'Selecione uma opção',
+  hasBorderRadius,
+  classNameWrapperSelect,
   ...props
 }) => {
   const [value, setValue] = useState<Option['value']>(props.multiple ? [] : '');
@@ -29,7 +31,7 @@ export const Select: React.FC<SelectProps> = ({
   );
 
   return (
-    <S.Wrapper>
+    <S.Wrapper hasBorderRadius={hasBorderRadius} className={classNameWrapperSelect}>
       {props.label && (
         <Label id="label-select" shrink>
           {props.label}

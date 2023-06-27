@@ -13,3 +13,15 @@ export const WrapperCarousel = styled('div')`
 export const Title = styled(Typography)`
   margin: ${spacing.S30} 0;
 `;
+
+export const WrapperHeader = styled('div')`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const WrapperButtons = styled('div')`
+  display: flex;
+  gap: ${spacing.S16};
+`;

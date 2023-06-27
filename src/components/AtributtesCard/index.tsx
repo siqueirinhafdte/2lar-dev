@@ -16,14 +16,12 @@ export function AtributtesCard({
   const heightImg = !isMobile ? 40 : 30;
 
   return (
-    <S.Background>
-      <S.Wrapper>
-        <ImageComponent src={urlIcon} width={widthImg} height={heightImg} alt={altIcon} />
-        <S.TextContainer>
-          <S.PrimaryText>{primaryText}</S.PrimaryText>
-          {isMobile ? null : <S.SecondaryText>{secondaryText}</S.SecondaryText>}
-        </S.TextContainer>
-      </S.Wrapper>
-    </S.Background>
+    <S.Wrapper>
+      <ImageComponent src={urlIcon} width={widthImg} height={heightImg} alt={altIcon} />
+      <S.TextContainer>
+        <S.PrimaryText>{primaryText}</S.PrimaryText>
+        {isMobile ? null : <S.SecondaryText>{secondaryText}</S.SecondaryText>}
+      </S.TextContainer>
+    </S.Wrapper>
   );
 }

@@ -3,7 +3,6 @@ import { styled } from '@mui/material/styles';
 export const Wrapper = styled('div')`
   max-width: calc(100vw - 0.9375rem);
   width: 100%;
-
   position: relative;
   overflow: visible;
 `;

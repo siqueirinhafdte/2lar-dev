@@ -12,3 +12,10 @@ export function getHelperTextFormik<T extends FormikValues>(
 ) {
   return formikInstance.touched[name] && formikInstance.errors[name];
 }
+
+export const handleChangeFormik =
+  <T extends FormikValues>(formikInstance: TFormik<T>, name: Extract<keyof T, string>) =>
+  (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    formikInstance.setFieldValue(name, value);
+  };

@@ -1,4 +1,4 @@
-FROM node:18
+FROM node:18-alpine
 # FROM node:18-alpine
 
 # Create app directory
@@ -13,4 +13,5 @@ RUN yarn build
 
 
 EXPOSE 3000
+EXPOSE 80
 CMD ["yarn", "start"] 

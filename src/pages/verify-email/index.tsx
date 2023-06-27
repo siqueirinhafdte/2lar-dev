@@ -1,15 +1,14 @@
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Logo } from 'components';
+import { InputLabel, Typography } from '@mui/material';
 import { cryptoConfig } from 'config/crypto';
 import cryptoJs from 'crypto-js';
 import _isEqual from 'lodash/isEqual';
 import { useRouter } from 'next/router';
 import api from 'services/httpClient';
-import { project } from 'shared/enum';
 import { RootState, store } from 'store';
-import { reset, setNewPassword } from 'store/slices/user';
+import { setNewPassword } from 'store/slices/user';
 import { Button } from 'stories/components/Forms/Button';
 import { OTPInput } from 'stories/components/Forms/OTPInput';
 import * as S from 'styles/verifyEmailPageStyles';
@@ -22,7 +21,7 @@ export default function VerifyEmail() {
   const dispatch = useDispatch();
 
   const newPassword = useRef(decryptPassword(store.getState().user.newPassword));
-  const email = useSelector((state: RootState) => state.user.tempEmail);
+  const tempEmail = useSelector((state: RootState) => state.user.tempEmail);
   const resettingPassword = useSelector((state: RootState) => state.user.resettingPassword);
 
   const [token, setToken] = useState('');
@@ -39,7 +38,7 @@ export default function VerifyEmail() {
 
   async function handleResetPasswordSubmit() {
     await api.post('/api/forgotPassword/submit', {
-      username: email,
+      username: tempEmail,
       newPassword: newPassword.current,
       code: token
     });
@@ -49,7 +48,7 @@ export default function VerifyEmail() {
 
   async function handleSignUpSubmit(): Promise<void> {
     try {
-      const result = await api.post('/api/verifyEmail', { email, code: token });
+      const result = await api.post('/api/verifyEmail', { email: tempEmail, code: token });
 
       if (_isEqual(result.status, 200)) {
         router.replace('/login');
@@ -76,40 +75,28 @@ export default function VerifyEmail() {
 
   async function resendCode() {
     if (resettingPassword) {
-      await api.post('/api/forgotPassword/sendCode', { email });
+      await api.post('/api/forgotPassword/sendCode', { email: tempEmail });
       return;
     }
 
-    await api.post('/api/resendCode', { email });
+    await api.post('/api/resendCode', { email: tempEmail });
   }
 
   useEffect(() => {
-    dispatch(setNewPassword());
-
-    return () => {
-      dispatch(reset());
-    };
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (!email) {
+    if (!tempEmail) {
+      dispatch(setNewPassword());
       router.push('/login');
     }
-  }, [email, router]);
+  }, [tempEmail, router, dispatch]);
 
   return (
     <S.Main>
       <S.Wrapper>
-        <S.SideLeft>
-          <Logo urlImg={project.urlImgLogo} />
-        </S.SideLeft>
-
+        <Typography variant="h6">Informe o código</Typography>
+        <S.Description>Enviamos um código de confirmação para</S.Description>
+        <S.Email>{tempEmail}</S.Email>
         <S.Form onSubmit={onSubmit}>
-          <h3>Validação de e-mail</h3>
-          <p>
-            Insira o token enviado para <strong>{email}</strong>
-          </p>
-
+          <InputLabel>Digite o código</InputLabel>
           <OTPInput autoFocus length={TOKEN_LENGTH} onChangeToken={setToken} />
 
           <Button type="submit" variant="outlined" disabled={disableButton}>
@@ -117,7 +104,7 @@ export default function VerifyEmail() {
           </Button>
 
           <Button type="button" variant="text" onClick={resendCode}>
-            Reenviar código
+            Não recebi o código
           </Button>
         </S.Form>
       </S.Wrapper>

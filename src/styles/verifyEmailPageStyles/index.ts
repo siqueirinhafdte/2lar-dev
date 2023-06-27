@@ -1,44 +1,38 @@
 import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 import { spacing } from 'theme/spacing';
 
 export const Main = styled('main')`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1;
+  background-color: ${({ theme }) => theme.palette.customColors?.backgroundLight};
+  width: 100%;
 `;
 
 export const Wrapper = styled('div')`
   display: flex;
-  align-items: center;
-  max-width: 24rem;
-  background-color: ${({ theme }) => theme.palette.grey[50]};
-  box-shadow: 0 0 ${spacing.S10} ${spacing.S1} rgba(0, 0, 0, 0.34);
-
-  ${({ theme }) => theme.breakpoints.up('sm')} {
-    max-width: none;
-    width: 37.5rem;
-    height: 24rem;
-  }
-`;
-
-export const SideLeft = styled('div')`
-  flex: 0.4;
-  height: 100%;
-  background-color: ${({ theme }) => theme.palette.grey[300]};
-  display: none;
-
-  ${({ theme }) => theme.breakpoints.up('sm')} {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  justify-content: center;
+  flex-direction: column;
+  background-color: ${({ theme }) => theme.palette.secondary.light};
+  margin: ${spacing.S50} 0;
+  padding: ${spacing.S32};
 `;
 
 export const Form = styled('form')`
-  flex: 0.6;
-  padding: 0 ${spacing.S32};
   display: flex;
   flex-direction: column;
   gap: ${spacing.S16};
+`;
+
+export const Description = styled(Typography)`
+  color: ${({ theme }) => theme.palette.text.secondary};
+  font-weight: ${({ theme }) => theme.typography.fontWeightMedium};
+  margin-top: ${spacing.S20};
+`;
+
+export const Email = styled(Typography)`
+  color: ${({ theme }) => theme.palette.primary.light};
+  text-decoration: underline;
+  margin-bottom: ${spacing.S20};
 `;

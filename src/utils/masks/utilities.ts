@@ -1,3 +1,5 @@
+import { maskBirthdate } from 'utils/masks/birthdate';
+import { maskCep } from 'utils/masks/cep';
 import { maskCNPJ } from 'utils/masks/cnpj';
 import { maskCPF } from 'utils/masks/cpf';
 import { maskCreditCardNumber } from 'utils/masks/credit-card';
@@ -11,7 +13,9 @@ export const getMaskByName = (maskName: MaskName): MaskFunction => {
     cnpj: maskCNPJ,
     cpf: maskCPF,
     currency: maskCurrency,
-    phone: maskPhoneNumber
+    phone: maskPhoneNumber,
+    cep: maskCep,
+    birthdate: maskBirthdate
   };
 
   const defaultMask: MaskFunction = (value: string) => value;

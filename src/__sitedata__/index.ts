@@ -7,6 +7,4 @@ export * from './principalBaner.data';
 export * from './takeVacation.data';
 export * from './heroBanner.data';
 export * from './listCardIcon.data';
-export * from './headerPost.data';
 export * from './description.data';
-export * from './amenities.data';

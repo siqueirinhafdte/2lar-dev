@@ -1,4 +1,10 @@
+import { TIconEnum } from 'shared/enum';
+
+import { Simulator } from './simulator';
+
 export interface Listing {
+  simulator: Simulator;
+  selectedGuests: number;
   id: string;
   name: string;
   address: Address;
@@ -13,7 +19,14 @@ export interface Listing {
   viewers: number;
   availablePeriod: number;
   amenities: Amenity[];
-  nearby: string[];
+  nearby: Nearby[];
+}
+
+interface Nearby {
+  icon: string;
+  name: TIconEnum;
+  description: string;
+  places: string[];
 }
 
 export interface Address {
@@ -39,7 +52,7 @@ export interface Attributes {
 
 export interface Amenity {
   icon?: string;
-  name: string;
+  name: TIconEnum;
   label: string;
   description?: string;
   type?: string;

@@ -1,17 +1,14 @@
-import { useResponsive } from 'shared/hooks';
 import { ImageComponent } from 'stories/components';
 
 import * as S from './styles';
 import { AmenitiesProps } from './types';
 
 export function AmenitiesCard({ amenities }: AmenitiesProps) {
-  const { isMobile } = useResponsive();
-
-  const widthIcon = isMobile ? 40 : 50;
-  const heightIcon = isMobile ? 40 : 50;
+  const widthIcon = 32;
+  const heightIcon = 32;
 
   const amenitiesWithIcons = amenities.filter((amenity) => amenity.icon);
-  const otherAmenities = amenities.filter((amenity) => !amenity.icon);
+  const otherAmenities = amenities.filter((amenity) => !amenity.type);
 
   return (
     <S.Wrapper>
@@ -28,7 +25,7 @@ export function AmenitiesCard({ amenities }: AmenitiesProps) {
               />
             </S.IconContainer>
             <S.CardDescription>
-              <S.CardTitle>{amenity.name}</S.CardTitle>
+              <S.CardTitle>{amenity.label}</S.CardTitle>
               <S.Description>{amenity.description}</S.Description>
             </S.CardDescription>
           </S.CardContainer>

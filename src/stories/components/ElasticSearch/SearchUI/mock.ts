@@ -62,9 +62,22 @@ export const configFields: ConfigFields = {
   ]
 };
 
-export const congigSearchUI: SearchDriverOptions = {
+export const configSearchUI: SearchDriverOptions = {
   apiConnector: connector,
   initialState: {
     searchTerm: ' '
   }
 };
+
+export const sortOptions = [
+  {
+    name: 'Mais relevantes',
+    value: '',
+    direction: ''
+  },
+  {
+    name: 'Nome',
+    value: 'name',
+    direction: 'asc'
+  }
+];

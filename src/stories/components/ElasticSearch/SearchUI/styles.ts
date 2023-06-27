@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
 
 export const Wrapper = styled('div')`
+  width: 75rem;
   .sui-layout-header,
   .sui-layout-sidebar-toggle {
     display: none;

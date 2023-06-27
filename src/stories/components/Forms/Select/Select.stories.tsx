@@ -10,7 +10,8 @@ const meta: Meta<SelectProps> = {
   args: {
     label: 'Label',
     options: [{ label: 'Teste', value: 10 }],
-    helperText: 'Helper text'
+    helperText: 'Helper text',
+    hasBorderRadius: true
   },
   tags: ['autodocs']
 };

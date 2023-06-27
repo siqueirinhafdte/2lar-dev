@@ -31,6 +31,7 @@ export default function Home({ cardListData }: HomePageProps) {
       <HomeMainBanner {...homeMainBannerData} urlVideo="/video/my-video.mp4" />
       <MediaList title={mediaTitle} items={mediaList} />
       <EscapeRoutine {...escpaRoutineData} />
+
       {cardListData && (
         <CardsGrid
           title={'Encontre imóveis nas melhores localizações'}

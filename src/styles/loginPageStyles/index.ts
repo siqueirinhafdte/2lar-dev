@@ -7,50 +7,45 @@ export const Main = styled('main')`
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: calc(100vh - 15.625rem);
-  padding: ${spacing.S20} 0;
+  padding: ${spacing.S30} 0;
+  margin: ${spacing.S30} 0;
+  background-color: ${({ theme }) => theme.palette.customColors?.backgroundLight};
 `;
 
 export const Wrapper = styled('div')`
   width: 90%;
-  max-width: 25rem;
+  max-width: 51rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  background-color: ${({ theme }) => theme.palette.grey[50]};
-  box-shadow: 0 0 0.625rem 0.0625rem rgba(0, 0, 0, 0.34);
+  height: calc(100% - 0.625rem);
+  justify-content: center;
+  background-color: ${({ theme }) => theme.palette.secondary.light};
 
-  ${({ theme }) => theme.breakpoints.up('sm')} {
-    max-width: none;
-    width: 37.5rem;
-    height: 25rem;
+  ${({ theme }) => theme.breakpoints.down('md')} {
+    justify-content: space-between;
   }
-`;
 
-export const SideLeft = styled('div')`
-  width: 40%;
-  height: 100%;
-  background-color: ${({ theme }) => theme.palette.grey[300]};
-  display: none;
+  .imageLogin {
+    display: block;
 
-  ${({ theme }) => theme.breakpoints.up('sm')} {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    ${({ theme }) => theme.breakpoints.down('md')} {
+      display: none;
+    }
   }
 `;
 
 export const Form = styled('form')`
-  padding: ${spacing.S10};
-  padding-right: ${spacing.S20};
-  margin: 0 ${spacing.S20};
+  padding: ${spacing.S20} ${spacing.S10};
+  margin: 0;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 1rem;
-  width: 100%;
+  width: 60%;
 
-  ${({ theme }) => theme.breakpoints.up('sm')} {
-    width: 60%;
+  ${({ theme }) => theme.breakpoints.down('md')} {
+    width: 100%;
+    margin: 0 ${spacing.S20};
   }
 `;
 

@@ -9,8 +9,10 @@ export type WriteUrlProps = {
 export interface SearchUIProps {
   title: string;
   config: SearchDriverOptions;
+  sortOptions: SortOptions[];
   configFields: ConfigFields;
   carouselItems?: CarouselProps;
+  facetsFields: FacetField[];
 }
 
 export interface FieldsItemResult {
@@ -23,4 +25,15 @@ export interface FieldsItemResult {
 export interface ConfigFields {
   fields: FieldsItemResult[];
   modeCard?: CardProps['mode'];
+}
+
+export interface SortOptions {
+  name: string;
+  value: string;
+  direction: string;
+}
+
+export interface FacetField {
+  field: string;
+  label: string;
 }

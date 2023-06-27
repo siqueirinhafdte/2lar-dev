@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['bolsaimovel.com.br']
+    domains: ['bolsaimovel.com.br', 'doislar.s3.us-west-1.wasabisys.com', 'flagcdn.com']
   },
   env: {
     AWS_REGION: process.env.AWS_REGION,

@@ -16,7 +16,11 @@ export const Primary: Story = {
   args: {
     title: 'Alameda Dourado',
     type: 'Casa',
-    urlImg: 'https://a0.muscache.com/im/pictures/67869304/c74c22df_original.jpg?im_w=1200',
+    // urlImg: 'https://a0.muscache.com/im/pictures/67869304/c74c22df_original.jpg',
+    images: [
+      'https://a0.muscache.com/im/pictures/67869304/c74c22df_original.jpg',
+      'https://a0.muscache.com/im/pictures/67869304/c74c22df_original.jpg'
+    ],
     description: 'Jurerê internacional, Florianópolis',
     urlRedirect: 'https://google.com.br',
     price: {

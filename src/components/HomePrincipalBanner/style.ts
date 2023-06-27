@@ -6,7 +6,6 @@ import { spacing } from 'theme/spacing';
 
 export const Wrapper = styled('div')`
   width: 100%;
-
   text-align: left;
   justify-content: center;
   display: flex;

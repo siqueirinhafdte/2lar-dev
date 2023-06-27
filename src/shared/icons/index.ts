@@ -15,3 +15,5 @@ export { default as PersonIcon } from '@mui/icons-material/Person';
 export { default as PlayArrowIcon } from '@mui/icons-material/PlayArrow';
 export { default as PauseIcon } from '@mui/icons-material/Pause';
 export { default as WhatsAppIcon } from '@mui/icons-material/WhatsApp';
+export { default as KeyboardArrowLeftIcon } from '@mui/icons-material/KeyboardArrowLeft';
+export { default as KeyboardArrowRightIcon } from '@mui/icons-material/KeyboardArrowRight';

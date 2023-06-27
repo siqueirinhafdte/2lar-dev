@@ -7,7 +7,10 @@ export default function CategoryName() {
   const searchParams = useSearchParams();
   const searchTerm = decodeURI(searchParams?.get('term')?.toString() ?? '');
 
-  const { data } = useListings(`Resultado de busca por: ${searchTerm ?? ''}`, searchTerm);
+  const data = useListings({
+    titlePage: `Resultado de busca por: ${searchTerm ?? ''}`,
+    searchTerm
+  });
   return (
     <S.Wrapper>
       <SearchUI {...data} />

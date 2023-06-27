@@ -3,7 +3,11 @@ import { SearchUI } from 'stories/components';
 import * as S from 'styles/listingsPageStyles';
 
 export default function Listings() {
-  const { data } = useListings('Sua fantástica segunda casa', undefined, true);
+  const data = useListings({
+    titlePage: 'Sua fantástica segunda casa',
+    showCarousel: true
+  });
+
   return (
     <S.Wrapper>
       <SearchUI {...data} />

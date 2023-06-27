@@ -26,11 +26,23 @@ export const Layout = ({ children }: LayoutProps) => {
     }
   };
 
-  const menu = {
-    anchor: MenuAnchor.right,
-    menuItems: menuData,
-    urlImgLogo: project.urlImgLogo
-  };
+  const menuSelected = useMemo(() => {
+    return menuData.map((item) => {
+      const isActive = router.asPath === item.redirectLink;
+      return {
+        ...item,
+        isSelected: isActive
+      };
+    });
+  }, [router.asPath]);
+
+  const menu = useMemo(() => {
+    return {
+      anchor: MenuAnchor.right,
+      menuItems: menuSelected,
+      urlImgLogo: project.urlImgLogo
+    };
+  }, [menuSelected]);
 
   const { showComponent, color: colorHeader } = useMemo(() => {
     return getVisualControlHeaderByPage(router.pathname ?? '', isMobile);
@@ -42,7 +54,7 @@ export const Layout = ({ children }: LayoutProps) => {
         urlImgLogo={project.urlImgLogo}
         urlImgLogoDarkBg={project.urlImgLogoDarkBg}
         menu={menu}
-        links={menuData}
+        links={menuSelected}
         button={{
           label: 'Entrar',
           onClick: function (): void {

@@ -2,7 +2,7 @@ export const menuData = [
   {
     id: '1',
     redirectLink: '/',
-    label: 'Ínicio'
+    label: 'Início'
   },
   {
     id: '2',

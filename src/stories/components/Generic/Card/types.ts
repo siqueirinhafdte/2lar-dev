@@ -1,6 +1,7 @@
 export interface CardProps {
   title?: string;
   urlImg?: string;
+  images?: string[];
   type?: string;
   description?: string;
   urlRedirect?: string;
