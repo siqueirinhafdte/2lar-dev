@@ -1,5 +1,4 @@
 import { styled } from '@mui/material';
-import { InputText as InputTextComponent } from 'stories/components';
 import { Button } from 'stories/components/Forms/Button';
 import { spacing } from 'theme/spacing';
 
@@ -11,23 +10,16 @@ export const ButtonComponent = styled(Button)`
   padding: ${spacing.S14};
 `;
 
-export const ContainerPhoneNumber = styled('div')`
+export const FormPhoneNumber = styled('form')`
   display: flex;
   flex-direction: column;
   padding: 0 ${spacing.S10};
   gap: ${spacing.S24};
 `;
 
-export const ContainerEmail = styled('div')`
+export const FormEmail = styled('form')`
   display: flex;
   flex-direction: column;
   padding: 0 ${spacing.S10};
   gap: ${spacing.S26};
-`;
-
-export const InputText = styled(InputTextComponent)`
-  input {
-    outline: none;
-    padding: ${spacing.S8} 0 ${spacing.S8} ${spacing.S5};
-  }
 `;

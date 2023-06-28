@@ -7,7 +7,7 @@ import cryptoJs from 'crypto-js';
 import _isEqual from 'lodash/isEqual';
 import { useRouter } from 'next/router';
 import api from 'services/httpClient';
-import { RootState, store } from 'store';
+import { AppState, store } from 'store';
 import { setNewPassword } from 'store/slices/user';
 import { Button } from 'stories/components/Forms/Button';
 import { OTPInput } from 'stories/components/Forms/OTPInput';
@@ -21,8 +21,8 @@ export default function VerifyEmail() {
   const dispatch = useDispatch();
 
   const newPassword = useRef(decryptPassword(store.getState().user.newPassword));
-  const tempEmail = useSelector((state: RootState) => state.user.tempEmail);
-  const resettingPassword = useSelector((state: RootState) => state.user.resettingPassword);
+  const tempEmail = useSelector((state: AppState) => state.user.tempEmail);
+  const resettingPassword = useSelector((state: AppState) => state.user.resettingPassword);
 
   const [token, setToken] = useState('');
   const disableButton = !_isEqual(token.length, TOKEN_LENGTH);

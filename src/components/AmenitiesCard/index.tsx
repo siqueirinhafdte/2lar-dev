@@ -25,7 +25,7 @@ export function AmenitiesCard({ amenities }: AmenitiesProps) {
               />
             </S.IconContainer>
             <S.CardDescription>
-              <S.CardTitle>{amenity.label}</S.CardTitle>
+              <S.CardTitle variant="h6">{amenity.label}</S.CardTitle>
               <S.Description>{amenity.description}</S.Description>
             </S.CardDescription>
           </S.CardContainer>

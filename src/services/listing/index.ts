@@ -52,7 +52,7 @@ export const getListingForListingPage = async (
         amenities: result.amenities.map((item) => {
           return {
             ...item,
-            icon: iconEnum[item.name]
+            icon: iconEnum[item.name] ?? '/icons/casas-dark.svg'
           };
         })
       },

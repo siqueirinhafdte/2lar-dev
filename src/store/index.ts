@@ -1,17 +1,40 @@
 import { configureStore } from '@reduxjs/toolkit';
-import loadingReducer from 'store/slices/loading';
-import snackbarReducer from 'store/slices/snackbar';
-import userReducer from 'store/slices/user';
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  persistReducer,
+  persistStore,
+  PURGE,
+  REGISTER,
+  REHYDRATE
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+import rootReducer from './rootReducer';
+
+const persistConfig = {
+  key: 'root',
+  version: 1,
+  storage,
+  blacklist: ['@shop']
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: {
-    user: userReducer,
-    loading: loadingReducer,
-    snackbar: snackbarReducer
-  }
+  reducer: persistedReducer,
+  devTools: !process.env.PRODUCTION,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredPaths: ['payload.config().adapter']
+      }
+    })
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
+export type AppState = ReturnType<typeof store.getState>;
+
+export const persistor = persistStore(store);

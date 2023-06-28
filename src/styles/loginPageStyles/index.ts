@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import { fontSizes } from 'theme/fontSizes.theme';
 import { spacing } from 'theme/spacing';
 
-export const Main = styled('main')`
+export const Main = styled('div')`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,7 +34,7 @@ export const Wrapper = styled('div')`
   }
 `;
 
-export const Form = styled('form')`
+export const WrapperTabs = styled('div')`
   padding: ${spacing.S20} ${spacing.S10};
   margin: 0;
   display: flex;

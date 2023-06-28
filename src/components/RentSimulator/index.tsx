@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
 import { SelectCircleButton } from 'components/SelectCircleButton';
-import { WrapperPage } from 'components/WrapperPage';
 import { getSimulatorData } from 'services/listing';
 import { Simulator } from 'shared/types/api/simulator';
 import { InputNumber } from 'stories/components';
@@ -53,56 +52,54 @@ export const RentSimulator = ({ listingId }: RentSimulatorProps) => {
   }));
 
   return (
-    <WrapperPage>
-      <S.Wrapper>
-        <S.Title variant="h3">Simulador de aluguel</S.Title>
-        <S.Subtitle variant="h6">
-          Dividir o aluguel com seus familiares ou amigos é muito mais barato.
-        </S.Subtitle>
-        <S.Subtitle variant="h6">Preencha as informações para calcular.</S.Subtitle>
-        <S.Container>
-          <S.ContainerForm>
-            <S.ContentBox>
-              <S.QuestionDivideOne variant="h6">Você quer dividir</S.QuestionDivideOne>
-              <S.QuestionDivideSecond variant="h6">entre quantas pessoas?</S.QuestionDivideSecond>
-              <S.MaxGuestContainer>
-                <InputNumber defaultValue={1} maxValue={8} onChange={handleMaxGuestChange} />
-                <S.MaxGuestText>Máximo {simulator?.maxGuest}</S.MaxGuestText>
-              </S.MaxGuestContainer>
-            </S.ContentBox>
-            <S.ContentBox>
-              <S.Question variant="h6">Por quantos períodos você quer alugar?</S.Question>
-              <SelectCircleButton
-                showValuesSelected="previous-values"
-                options={periodOptions}
-                value={simulator?.maxPeriod}
-                onChange={handleMaxPeriodChange}
-              />
-            </S.ContentBox>
-          </S.ContainerForm>
-          <S.ContainerResult>
-            <S.BoxDays>
-              <S.BoxText>Total de {rentSimulator?.days} dias</S.BoxText>
-              <S.ValueResult>
-                {getCurrencyIntegerValue(Number(rentSimulator.price?.day ?? 0))} por dia pra cada
-              </S.ValueResult>
-            </S.BoxDays>
+    <S.Wrapper>
+      <S.Title variant="h3">Simulador de aluguel</S.Title>
+      <S.Subtitle variant="h6">
+        Dividir o aluguel com seus familiares ou amigos é muito mais barato.
+      </S.Subtitle>
+      <S.Subtitle variant="h6">Preencha as informações para calcular.</S.Subtitle>
+      <S.Container>
+        <S.ContainerForm>
+          <S.ContentBox>
+            <S.QuestionDivideOne variant="h6">Você quer dividir</S.QuestionDivideOne>
+            <S.QuestionDivideSecond variant="h6">entre quantas pessoas?</S.QuestionDivideSecond>
+            <S.MaxGuestContainer>
+              <InputNumber defaultValue={1} maxValue={8} onChange={handleMaxGuestChange} />
+              <S.MaxGuestText>Máximo {simulator?.maxGuest}</S.MaxGuestText>
+            </S.MaxGuestContainer>
+          </S.ContentBox>
+          <S.ContentBox>
+            <S.Question variant="h6">Por quantos períodos você quer alugar?</S.Question>
+            <SelectCircleButton
+              showValuesSelected="previous-values"
+              options={periodOptions}
+              value={simulator?.maxPeriod}
+              onChange={handleMaxPeriodChange}
+            />
+          </S.ContentBox>
+        </S.ContainerForm>
+        <S.ContainerResult>
+          <S.BoxDays>
+            <S.BoxText>Total de {rentSimulator?.days} dias</S.BoxText>
+            <S.PriceDay>
+              {getCurrencyIntegerValue(Number(rentSimulator.price?.day ?? 0))} por dia pra cada
+            </S.PriceDay>
+          </S.BoxDays>
 
-            <S.BoxResult>
-              <S.ValueResult>
-                Apenas {getCurrencyIntegerValue(Number(rentSimulator?.total ?? 0))} por pessoa
-              </S.ValueResult>
-            </S.BoxResult>
+          <S.BoxResult>
+            <S.TotalValue>
+              Apenas {getCurrencyIntegerValue(Number(rentSimulator?.total ?? 0))} por pessoa
+            </S.TotalValue>
+          </S.BoxResult>
 
-            <S.BoxDescription>
-              <S.SimulatorDescription>Estes valores são representativos.</S.SimulatorDescription>
-              <S.SimulatorDescription>
-                A divisão você deve fazer no meio de pagamento ou pessoalmente.
-              </S.SimulatorDescription>
-            </S.BoxDescription>
-          </S.ContainerResult>
-        </S.Container>
-      </S.Wrapper>
-    </WrapperPage>
+          <S.BoxDescription>
+            <S.SimulatorDescription>Estes valores são representativos.</S.SimulatorDescription>
+            <S.SimulatorDescription>
+              A divisão você deve fazer no meio de pagamento ou pessoalmente.
+            </S.SimulatorDescription>
+          </S.BoxDescription>
+        </S.ContainerResult>
+      </S.Container>
+    </S.Wrapper>
   );
 };

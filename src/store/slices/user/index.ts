@@ -25,13 +25,8 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setBasicInfosUser: (
-      state,
-      action: PayloadAction<{ email: string; name: string; sub: string }>
-    ) => {
+    setBasicInfosUser: (state, action: PayloadAction<{ email: string }>) => {
       state.email = action.payload.email;
-      state.name = action.payload.name;
-      state.sub = action.payload.sub;
     },
     setTempEmail: (state, action: PayloadAction<string>) => {
       state.tempEmail = action.payload;
@@ -46,14 +41,23 @@ export const userSlice = createSlice({
     setNewPassword: (state, action: PayloadAction<string | undefined>) => {
       state.newPassword = action.payload;
     },
-    reset: (state) => {
+    resetTempEmail: (state) => {
       state.tempEmail = initialState.tempEmail;
+    },
+    resetUser: (state) => {
+      state.email = initialState.email;
     }
   }
 });
 
 // Action creators are generated for each case reducer function
-export const { setBasicInfosUser, reset, setResettingPassword, setTempEmail, setNewPassword } =
-  userSlice.actions;
+export const {
+  setBasicInfosUser,
+  resetTempEmail,
+  resetUser,
+  setResettingPassword,
+  setTempEmail,
+  setNewPassword
+} = userSlice.actions;
 
 export default userSlice.reducer;

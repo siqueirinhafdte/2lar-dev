@@ -10,6 +10,7 @@ export interface HeaderProps {
   button: { label: string; onClick: () => void };
   menu?: MenuProps;
   username?: string;
+  logout?: CallableFunction;
   search?: InputSearchElasticProps;
   color?: AppBarProps['color'];
   showComponent: {

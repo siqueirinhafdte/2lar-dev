@@ -6,7 +6,7 @@ export const homeMainBannerData = {
   },
   textButton: 'Encontrar meu imóvel',
   shortDescription: 'Alugue agora sem complicação, sem fiador e 100% online.',
-  subTitle: 'o que é a 2 lar',
+  subTitle: 'O que é a 2lar',
   description: {
     firstParagraph: 'Uma experiência lucrativa para quem anuncia e econômica para quem aluga.',
     secondParagraph:

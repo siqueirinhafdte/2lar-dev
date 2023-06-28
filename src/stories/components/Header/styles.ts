@@ -136,15 +136,24 @@ export const WrapperInputSearch = styled(`div`)`
 export const WrapperButton = styled('div')`
   max-height: 4rem;
   justify-self: end;
-
-  div {
-    padding: 0;
-    margin: 0;
-  }
 `;
 
 export const WrapperButtons = styled('div')`
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
+`;
+
+export const WrapperAvatar = styled('div')`
+  display: flex;
+
+  .MuiOutlinedInput-input {
+    padding: 0;
+  }
+
+  .MuiOutlinedInput-root {
+    fieldset {
+      border: none;
+    }
+  }
 `;

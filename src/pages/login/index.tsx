@@ -1,17 +1,16 @@
 import { LoginEmail } from 'components/login/LoginEmail';
 import { LoginPhoneNumber } from 'components/login/LoginPhoneNumber';
 import { Tabs } from 'components/Tabs';
-import { useLogin } from 'hooks/useLoginPage';
+import { GetServerSideProps } from 'next';
+import { tokenService } from 'services/tokenService';
 import { ImageComponent } from 'stories/components';
 import * as S from 'styles/loginPageStyles';
 
 export default function Login() {
-  const { formik } = useLogin();
-
   return (
     <S.Main>
       <S.Wrapper>
-        <S.Form onSubmit={formik.handleSubmit}>
+        <S.WrapperTabs>
           <Tabs
             tabs={[{ label: 'E-mail' }, { label: 'Celular' }]}
             tabPanels={[
@@ -19,7 +18,7 @@ export default function Login() {
               { component: <LoginPhoneNumber />, id: '2' }
             ]}
           />
-        </S.Form>
+        </S.WrapperTabs>
         <ImageComponent
           width={332}
           height={498}
@@ -31,3 +30,22 @@ export default function Login() {
     </S.Main>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const token = tokenService.get(ctx);
+
+  if (token) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/'
+      }
+    };
+  }
+
+  return {
+    props: {
+      login: true
+    }
+  };
+};

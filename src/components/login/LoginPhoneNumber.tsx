@@ -1,15 +1,16 @@
 import { Typography } from '@mui/material';
 import { InputPhoneNumberDDI } from 'components/InputPhoneNumberDDI';
 import { useLogin } from 'hooks/useLoginPage';
+import { InputPassword } from 'stories/components';
 import { getErrorsFormik, getHelperTextFormik, handleChangeFormik } from 'utils';
 
-import { ButtonComponent, ContainerPhoneNumber, InputText } from './styles';
+import * as S from './styles';
 
 export function LoginPhoneNumber() {
   const { formik } = useLogin();
 
   return (
-    <ContainerPhoneNumber>
+    <S.FormPhoneNumber>
       <Typography variant="h4">Acesse ou crie sua conta</Typography>
 
       <InputPhoneNumberDDI
@@ -21,7 +22,7 @@ export function LoginPhoneNumber() {
         onChange={handleChangeFormik(formik, 'username')}
         onBlur={formik.handleBlur}
       />
-      <InputText
+      <InputPassword
         label="Senha"
         name="password"
         value={formik.values.password}
@@ -30,9 +31,9 @@ export function LoginPhoneNumber() {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
       />
-      <ButtonComponent type="submit" variant="contained">
+      <S.ButtonComponent type="submit" variant="contained">
         Entrar
-      </ButtonComponent>
-    </ContainerPhoneNumber>
+      </S.ButtonComponent>
+    </S.FormPhoneNumber>
   );
 }

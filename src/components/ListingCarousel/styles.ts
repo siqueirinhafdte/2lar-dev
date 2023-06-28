@@ -11,7 +11,7 @@ export const Wrapper = styled('div')`
 export const ContainerSlide = styled('div')`
   width: 60%;
 
-  ${({ theme }) => theme.breakpoints.down('sm')} {
+  ${({ theme }) => theme.breakpoints.down('md')} {
     width: 100%;
   }
 
@@ -63,21 +63,25 @@ export const ContainerSlide = styled('div')`
 `;
 
 export const ContainerMaps = styled('div')`
-  width: 40%;
-  height: auto;
-
+  display: block;
+  width: 100%;
   img {
     object-fit: cover;
     width: 100%;
-    height: auto;
+    height: 29.85rem;
     max-height: 37.75rem;
+  }
+
+  ${({ theme }) => theme.breakpoints.down('md')} {
+    display: none;
   }
 `;
 
 export const WrapperItemSwiper = styled('div')`
   img {
     width: 100%;
-    height: auto;
+    height: 29.85rem;
+    object-fit: cover;
 
     ${({ theme }) => theme.breakpoints.down('sm')} {
       width: 100%;
@@ -95,7 +99,7 @@ export const TypeChip = styled(Chip)`
   left: 0;
   margin: ${spacing.S24};
 
-  ${({ theme }) => theme.breakpoints.down('sm')} {
+  ${({ theme }) => theme.breakpoints.down('md')} {
     margin: ${spacing.S16};
   }
 `;

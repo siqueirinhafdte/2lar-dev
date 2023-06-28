@@ -2,6 +2,7 @@ import { styled } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { fontSizes } from 'theme/fontSizes.theme';
 import { spacing } from 'theme/spacing';
+
 export const Wrapper = styled('div')`
   margin: ${spacing.S30} 0;
 `;
@@ -36,15 +37,16 @@ export const Title = styled(Typography)`
 `;
 export const ContainerMedia = styled('div')`
   width: 100%;
-
   display: flex;
   flex-direction: row;
-
   overflow: hidden;
 `;
 
 export const ImgContainer = styled('div')`
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-right: solid ${spacing.S1} ${({ theme }) => theme.palette.secondary.main};
   padding: 0 ${spacing.S30};
   margin: ${spacing.S10} 0;
@@ -57,6 +59,7 @@ export const ImgContainer = styled('div')`
 export const Image = styled('img')`
   width: 4rem;
   height: 4rem;
+  object-fit: contain;
 
   ${({ theme }) => theme.breakpoints.down('md')} {
     width: 2rem;

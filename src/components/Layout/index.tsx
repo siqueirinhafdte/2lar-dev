@@ -1,19 +1,26 @@
-import { useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { footerData, menuData } from '__sitedata__';
 import { elasticSearch } from 'config';
 import { useRouter } from 'next/router';
+import { authService } from 'services/authService';
+import { tokenService } from 'services/tokenService';
 import { MenuAnchor, project } from 'shared/enum';
 import { useResponsive } from 'shared/hooks';
+import { AppState } from 'store';
+import { resetUser, setBasicInfosUser } from 'store/slices/user';
 import { Footer, Header, MainContent } from 'stories/components';
 import { InputSearchElasticProps } from 'stories/components/ElasticSearch/InputSearchElastic/types';
+import { Logger } from 'utils';
 import { getVisualControlHeaderByPage } from 'utils/layout';
 
 import { LayoutProps } from './types';
 
 export const Layout = ({ children }: LayoutProps) => {
   const router = useRouter();
-
+  const email = useSelector((store: AppState) => store.user.email);
+  const dispatch = useDispatch();
   const { isMobile } = useResponsive();
 
   const propsInputSearch: InputSearchElasticProps = {
@@ -48,6 +55,27 @@ export const Layout = ({ children }: LayoutProps) => {
     return getVisualControlHeaderByPage(router.pathname ?? '', isMobile);
   }, [router.pathname, isMobile]);
 
+  const logout = useCallback(() => {
+    authService
+      .logOff()
+      .then(() => {
+        tokenService.delete();
+        dispatch(resetUser());
+      })
+      .catch((error) => Logger.info({ error }));
+  }, [dispatch]);
+
+  useEffect(() => {
+    authService
+      .getSession()
+      .then((resp) => {
+        dispatch(setBasicInfosUser({ email: String(resp?.email) }));
+      })
+      .catch(() => {
+        dispatch(resetUser());
+      });
+  }, [dispatch]);
+
   return (
     <>
       <Header
@@ -61,6 +89,8 @@ export const Layout = ({ children }: LayoutProps) => {
             router.push('/login');
           }
         }}
+        username={email}
+        logout={logout}
         showComponent={showComponent}
         color={colorHeader}
         search={propsInputSearch}

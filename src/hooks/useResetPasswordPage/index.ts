@@ -8,14 +8,14 @@ import _delay from 'lodash/delay';
 import { useRouter } from 'next/navigation';
 import api from 'services/httpClient';
 import { messages } from 'shared/enum';
-import { RootState } from 'store';
+import { AppState } from 'store';
 import { showSnackbar } from 'store/slices/snackbar';
 import { setNewPassword } from 'store/slices/user';
 import * as yup from 'yup';
 
 export const useResetPassword = () => {
   const dispatch = useDispatch();
-  const email = useSelector((state: RootState) => state.user.tempEmail);
+  const email = useSelector((state: AppState) => state.user.tempEmail);
   const router = useRouter();
 
   const INITIAL_VALUES = {

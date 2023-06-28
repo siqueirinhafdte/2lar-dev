@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { RootState } from 'store';
+import { AppState } from 'store';
 import { clearSnackbar } from 'store/slices/snackbar';
 
 import { Loading } from '../Loading';
@@ -12,8 +12,8 @@ import { MainContentProps } from './types';
 export const MainContent: FC<MainContentProps> = ({ children }) => {
   const dispatch = useDispatch();
 
-  const isLoading = useSelector((store: RootState) => store.loading.isLoading);
-  const snackbar = useSelector((store: RootState) => store.snackbar);
+  const isLoading = useSelector((store: AppState) => store.loading.isLoading);
+  const snackbar = useSelector((store: AppState) => store.snackbar);
 
   return (
     <>

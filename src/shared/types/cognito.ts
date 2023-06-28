@@ -60,13 +60,15 @@ interface Pool {
 }
 
 export interface CognitoSignIn {
-  attributes: Attributes;
-  authenticationFlowType: string;
-  client: { endpoint: string };
-  keyPrefix: string;
-  pool: Pool;
-  preferredMFA: string;
-  signInUserSession: SignInUserSession;
-  userDataKey: string;
-  username: string;
+  data: {
+    attributes: Attributes;
+    authenticationFlowType: string;
+    client: { endpoint: string };
+    keyPrefix: string;
+    pool: Pool;
+    preferredMFA: string;
+    signInUserSession: SignInUserSession;
+    userDataKey: string;
+    username: string;
+  };
 }

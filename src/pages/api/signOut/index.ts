@@ -11,13 +11,12 @@ export default async function handler(
   res: NextApiResponse<BaseResponse<void>>
 ) {
   if (req.method === 'POST') {
-    const { username, password } = req.body;
     try {
-      const response = await Auth.signIn({ username, password });
+      const response = await Auth.signOut({ global: true });
 
       return res.status(200).json({ data: response, ok: true, status: 200 });
     } catch {
-      return res.status(400).json({ message: 'Erro ao realizar login', ok: false, status: 400 });
+      return res.status(400).json({ message: 'Erro ao realizar logoff', ok: false, status: 400 });
     }
   }
 }

@@ -8,6 +8,7 @@ export const Wrapper = styled('div')`
   color: ${({ theme }) => theme.palette.text.disabled};
   margin-top: ${spacing.S80};
   margin-bottom: ${spacing.S80};
+  width: 100%;
 
   ${({ theme }) => theme.breakpoints.down('md')} {
     max-width: 100%;
@@ -26,6 +27,7 @@ export const Title = styled(Typography)`
   font-weight: ${({ theme }) => theme.typography.fontWeightRegular};
   color: ${({ theme }) => theme.palette.text.primary};
   margin-bottom: ${spacing.S16};
+  width: 100%;
 
   ${({ theme }) => theme.breakpoints.down('md')} {
     font-weight: ${({ theme }) => theme.typography.fontWeightMedium};
@@ -55,9 +57,9 @@ export const Container = styled('div')`
 `;
 
 export const ContainerForm = styled('div')`
-  width: 50%;
+  width: 100%;
   background-color: ${({ theme }) => theme.palette.primary.light};
-  padding: ${spacing.S30};
+  padding: ${spacing.S20};
 
   ${({ theme }) => theme.breakpoints.down('md')} {
     width: 100%;
@@ -66,7 +68,7 @@ export const ContainerForm = styled('div')`
 `;
 
 export const ContainerResult = styled('div')`
-  width: 50%;
+  width: 100%;
   padding: ${spacing.S30};
   background-color: ${({ theme }) => theme.palette.primary.main};
 
@@ -77,7 +79,7 @@ export const ContainerResult = styled('div')`
 `;
 
 export const ContentBox = styled('div')`
-  margin: ${spacing.S50};
+  padding: ${spacing.S30};
 
   ${({ theme }) => theme.breakpoints.down('md')} {
     margin: ${spacing.S50} 0;
@@ -112,7 +114,7 @@ export const MaxGuestText = styled(Typography)`
 `;
 
 export const BoxResult = styled('div')`
-  margin: ${spacing.S50};
+  margin: ${spacing.S30};
 
   ${({ theme }) => theme.breakpoints.down('md')} {
     margin: ${spacing.S50} 0;
@@ -126,7 +128,7 @@ export const BoxText = styled('div')`
 `;
 
 export const BoxDescription = styled('div')`
-  margin: ${spacing.S50};
+  margin: ${spacing.S30};
 
   ${({ theme }) => theme.breakpoints.down('md')} {
     margin: ${spacing.S50} 0;
@@ -134,16 +136,27 @@ export const BoxDescription = styled('div')`
 `;
 
 export const BoxDays = styled('div')`
-  margin: ${spacing.S50};
+  margin: ${spacing.S30};
 
   ${({ theme }) => theme.breakpoints.down('md')} {
     margin: ${spacing.S50} 0;
   }
 `;
 
-export const ValueResult = styled(Typography)`
+export const PriceDay = styled(Typography)`
   font-size: ${fontSizes.F40};
   opacity: 0.3;
+  width: 12ch;
+
+  ${({ theme }) => theme.breakpoints.down('md')} {
+    margin: ${spacing.S50} 0;
+  }
+`;
+
+export const TotalValue = styled(Typography)`
+  font-size: ${fontSizes.F40};
+  opacity: 0.3;
+  width: 13ch;
 
   ${({ theme }) => theme.breakpoints.down('md')} {
     margin: ${spacing.S50} 0;

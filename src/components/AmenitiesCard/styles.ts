@@ -29,7 +29,7 @@ export const Title = styled(Typography)`
 
 export const CardGrid = styled('div')`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: ${spacing.S32};
   margin-bottom: ${spacing.S64};
 
@@ -76,8 +76,6 @@ export const CardDescription = styled('div')`
 `;
 
 export const CardTitle = styled(Typography)`
-  font-size: ${fontSizes.F20};
-  line-height: 2.5rem;
   font-weight: ${({ theme }) => theme.typography.fontWeightMedium};
   ${({ theme }) => theme.breakpoints.down('sm')} {
     font-size: ${fontSizes.F24};
@@ -87,7 +85,7 @@ export const CardTitle = styled(Typography)`
 
 export const Description = styled(Typography)`
   font-weight: ${({ theme }) => theme.typography.fontWeightLight};
-  font-size: ${fontSizes.F20};
+  font-size: ${fontSizes.F16};
   line-height: 2rem;
   letter-spacing: 0;
   white-space: nowrap;

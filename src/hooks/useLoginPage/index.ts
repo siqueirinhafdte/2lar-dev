@@ -6,6 +6,7 @@ import _delay from 'lodash/delay';
 import _isEqual from 'lodash/isEqual';
 import { useRouter } from 'next/navigation';
 import api from 'services/httpClient';
+import { tokenService } from 'services/tokenService';
 import { messages } from 'shared/enum';
 import { CognitoSignIn } from 'shared/types/cognito';
 import { showSnackbar } from 'store/slices/snackbar';
@@ -35,18 +36,19 @@ export const useLogin = () => {
 
   async function onSubmit(values: typeof INITIAL_VALUES) {
     try {
-      const result = await api.post<CognitoSignIn>('/api/signIn', values);
+      api.setBaseUrl('');
+      const { data: result } = await api.post<CognitoSignIn>('/api/signIn', values);
 
       if (result.data?.attributes) {
         const { attributes } = result.data;
 
         dispatch(
           setBasicInfosUser({
-            email: attributes.email,
-            name: attributes.name,
-            sub: attributes.sub
+            email: attributes.email
           })
         );
+
+        tokenService.save(result.data.signInUserSession.idToken.jwtToken);
 
         router.push('/');
         return;

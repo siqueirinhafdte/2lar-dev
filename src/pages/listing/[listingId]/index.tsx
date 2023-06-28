@@ -1,4 +1,3 @@
-'use client';
 import { CallWhatsapp } from 'components';
 import { AmenitiesCard } from 'components/AmenitiesCard';
 import { AnnounceAvatar } from 'components/AnnounceAvatar';

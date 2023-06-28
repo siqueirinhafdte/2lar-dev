@@ -1,37 +1,40 @@
 import { Typography } from '@mui/material';
 import { useLogin } from 'hooks/useLoginPage';
-import { getErrorsFormik, getHelperTextFormik } from 'utils';
+import { InputPassword, InputText } from 'stories/components';
+import { getErrorsFormik, getHelperTextFormik, handleChangeFormik } from 'utils';
 
-import { ButtonComponent, ContainerEmail, InputText } from './styles';
+import * as S from './styles';
 
 export function LoginEmail() {
   const { formik } = useLogin();
 
   return (
-    <ContainerEmail>
+    <S.FormEmail onSubmit={formik.handleSubmit}>
       <Typography variant="h4">Acesse ou crie sua conta</Typography>
+
       <InputText
         label="E-mail"
         name="username"
         value={formik.values.username}
         helperText={getHelperTextFormik(formik, 'username')}
         error={getErrorsFormik(formik, 'username')}
-        onChange={formik.handleChange}
+        onChange={handleChangeFormik(formik, 'username')}
         onBlur={formik.handleBlur}
       />
 
-      <InputText
+      <InputPassword
         label="Senha"
         name="password"
         value={formik.values.password}
         helperText={getHelperTextFormik(formik, 'password') as string}
         error={getErrorsFormik(formik, 'password')}
-        onChange={formik.handleChange}
+        onChange={handleChangeFormik(formik, 'password')}
         onBlur={formik.handleBlur}
       />
-      <ButtonComponent type="submit" variant="contained">
+
+      <S.ButtonComponent type="submit" variant="contained">
         Entrar
-      </ButtonComponent>
-    </ContainerEmail>
+      </S.ButtonComponent>
+    </S.FormEmail>
   );
 }

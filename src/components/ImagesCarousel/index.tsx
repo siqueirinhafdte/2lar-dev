@@ -18,6 +18,8 @@ export default function ImagesCarousel({ data }: ImageCarouselProps) {
 
   const slidesPerView = isMobile ? 1.7 : 2.7;
 
+  const duplicatedSlides = [...data.urlImg, ...data.urlImg];
+
   return (
     <S.Wrapper>
       <Swiper
@@ -27,7 +29,7 @@ export default function ImagesCarousel({ data }: ImageCarouselProps) {
         autoplay={{ delay: 100, disableOnInteraction: false }}
         loop
       >
-        {data.urlImg.map((url) => (
+        {duplicatedSlides.map((url) => (
           <SwiperSlide key={url}>
             <S.WrapperImage>
               <S.ImageContainer>

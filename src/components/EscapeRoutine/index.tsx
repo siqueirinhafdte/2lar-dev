@@ -9,8 +9,8 @@ import { EscapeRoutineProps } from './types';
 export const EscapeRoutine = ({ dataTimeLine, urlImg }: EscapeRoutineProps): ReactElement => {
   const { isMobile } = useResponsive();
 
-  const widthImg = !isMobile ? 444 : 365;
-  const heightImg = !isMobile ? 840 : 542;
+  const widthImg = !isMobile ? 525 : 365;
+  const heightImg = !isMobile ? 730 : 542;
 
   return (
     <S.Wrapper>

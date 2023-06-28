@@ -1,7 +1,11 @@
 import React from 'react';
 
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import { Logo } from 'components';
+import { getAvatarURL } from 'utils';
 
+import { Avatar } from '../Avatar';
 import { InputSearchElastic } from '../ElasticSearch';
 import { Menu } from '../Menu';
 import * as S from './styles';
@@ -15,6 +19,8 @@ export const Header: React.FC<HeaderProps> = ({
   menu,
   search,
   color = 'inherit',
+  username,
+  logout,
   showComponent
 }) => {
   return (
@@ -53,14 +59,29 @@ export const Header: React.FC<HeaderProps> = ({
               <S.WrapperButtons>
                 {showComponent.buttonHeader && (
                   <S.WrapperButton>
-                    <S.ButtonHeader
-                      colorHeader={color}
-                      variant="outlined"
-                      size="large"
-                      onClick={button.onClick}
-                    >
-                      {button.label}
-                    </S.ButtonHeader>
+                    {username ? (
+                      <S.WrapperAvatar>
+                        <Avatar alt={username} src={getAvatarURL(username)} />
+                        <Select
+                          onChange={() => {
+                            if (logout) {
+                              logout();
+                            }
+                          }}
+                        >
+                          <MenuItem value="logoff">Sair</MenuItem>
+                        </Select>
+                      </S.WrapperAvatar>
+                    ) : (
+                      <S.ButtonHeader
+                        colorHeader={color}
+                        variant="outlined"
+                        size="large"
+                        onClick={button.onClick}
+                      >
+                        {button.label}
+                      </S.ButtonHeader>
+                    )}
                   </S.WrapperButton>
                 )}
                 {showComponent.menuDrawer && menu && (
